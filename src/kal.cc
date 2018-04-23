@@ -98,6 +98,7 @@ void usage(char *prog) {
 	printf("\t-E\tmanual frequency offset in hz\n");
 	printf("\t-v\tverbose\n");
 	printf("\t-D\tenable debug messages\n");
+	printf("\t-V\tversion\n");
 	printf("\t-h\thelp\n");
 	exit(-1);
 }
@@ -115,7 +116,7 @@ int main(int argc, char **argv) {
 	double freq = -1.0, fd;
 	usrp_source *u;
 
-	while((c = getopt(argc, argv, "f:c:s:b:R:A:g:e:E:Nd:vDh?")) != EOF) {
+	while((c = getopt(argc, argv, "f:c:s:b:R:A:g:e:E:Nd:vDh?:V")) != EOF) {
 		switch(c) {
 			case 'f':
 				freq = strtod(optarg, 0);
@@ -215,6 +216,9 @@ int main(int argc, char **argv) {
 				g_debug = 1;
 				break;
 
+			case 'V':
+				printf("%s-rtl\n", kal_version_string);
+				return 0;
 			case 'h':
 			case '?':
 			default:
